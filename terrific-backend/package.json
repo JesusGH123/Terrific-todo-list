@@ -1,0 +1,27 @@
+{
+  "name": "terrific-backend",
+  "version": "1.0.0",
+  "description": "todo-list backend",
+  "main": "index.ts",
+  "scripts": {
+    "start": "node index.ts",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JesusGH123/Terrific-todo-list.git"
+  },
+  "author": "Jesus Garcia",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/JesusGH123/Terrific-todo-list/issues"
+  },
+  "homepage": "https://github.com/JesusGH123/Terrific-todo-list#readme",
+  "dependencies": {
+    "express": "^4.21.2"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.1",
+    "typescript": "^5.7.2"
+  }
+}
