@@ -1,20 +1,37 @@
-export default function List() {
-    const data = [
-        { id: "0193c6bc-348b-7c60-aebe-b9ca5443e882", name: "Loading the dishwater" },
-        { id: "0193c6bc-348b-7c60-aebe-b9cbbcaef007", name: "Sweeping" },
-        { id: "0193c6bc-348b-7c60-aebe-b9cc76768b05", name: "Laundry" }
-    ];
+import { Chore, ListProps } from "../../interfaces/chores";
 
+export default function List({ 
+    chores,
+    deleteChore, 
+    updateChore,
+    setSelected,
+    setChoreName,
+}: ListProps) {
     return (
         <table>
             {
-                data.map((chore) => {
+                chores.map((chore: Chore) => {
                     return(
                         <tr>
-                            <input type="checkbox" id={`choreCheckbox${chore.id}`} value={chore?.id}></input>
-                            <td>{chore?.name}</td>
+                            <input
+                                id={`choreCheckbox${chore?._id}`}
+                                type="checkbox"
+                                checked={chore?.done}
+                                onChange={() => updateChore({
+                                    "_id": chore?._id,
+                                    "name": chore?.name,
+                                    "done": !chore?.done
+                                })}
+                            />
+                            <td id={`choreName${chore?._id}`} >{chore?.name}</td>
 
-                            <button>Delete</button>
+                            <button id={`btnDelete${chore?._id}`} onClick={() => deleteChore(chore?._id)}>Delete</button>
+                            <button 
+                                id={`btnEdit${chore?._id}`}
+                                onClick={() => {
+                                    setSelected(chore);
+                                    setChoreName(chore?.name);
+                                }}>Edit</button>
                         </tr>
                     )
                 })

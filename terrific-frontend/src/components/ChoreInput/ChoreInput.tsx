@@ -1,10 +1,32 @@
-export default function ChoreInput() {
+import { ChoreInputProps } from "../../interfaces/chores";
+
+export default function ChoreInput({ 
+    choreName,
+    selected,
+    setSelected,
+    updateChore,
+    setChoreName,
+    createChore
+}: ChoreInputProps) {
+
     return(
         <>
-            Add a new chore
-            <input type="text" />
+            <span>{(selected ? "Update" : "Add")} todo</span>
+            <input type="text" value={choreName} onChange={(event) => setChoreName(event.target.value)}/>
 
-            <button>+</button>
+            <button onClick={() => {
+                if(choreName == "") return alert("Task needs a name");
+                if(selected)
+                    updateChore({
+                        ...selected,
+                        name: choreName,
+                    });
+                else
+                    createChore(choreName);
+                setSelected(null);
+            }}>
+                { (selected) ? "Update" : "Add" }
+            </button>
         </>
     )
 }
