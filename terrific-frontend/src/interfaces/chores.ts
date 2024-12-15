@@ -3,17 +3,25 @@ export interface Chore {
     name: string,
     done: boolean
 }
+export type ChoreOrNull = Chore | null;
 
 export interface Chores {
     chores: Chore[];
 }
 
 export interface ChoreInputProps {
-    createChore: (choreName: string) => void
+    selected: ChoreOrNull,
+    choreName: string,
+    updateChore: (chore: Chore) => void,
+    createChore: (choreName: string) => void,
+    setSelected: React.Dispatch<React.SetStateAction<ChoreOrNull>>,
+    setChoreName: React.Dispatch<React.SetStateAction<string>>
 }
 
 export interface ListProps {
     chores: Chore[],
     deleteChore: (id: string) => void,
-    updateChore: (chore: Chore) => void
+    updateChore: (chore: Chore) => void,
+    setSelected: React.Dispatch<React.SetStateAction<ChoreOrNull>>,
+    setChoreName: React.Dispatch<React.SetStateAction<string>>
 }

@@ -1,14 +1,16 @@
 import axios from "axios";
 import { useCallback, useEffect, useState } from "react";
-import { Chore } from "../interfaces/chores";
-
+import { Chore, ChoreOrNull } from "../interfaces/chores";
+import { API_URLS } from "../constants/constants";
 
 export default function useChores() {
     const [chores, setChores] = useState([]);
+    const [choreName, setChoreName] = useState("");
+    const [selected, setSelected] = useState<ChoreOrNull>(null);
 
     const getChores = useCallback(async () => {
         try {
-            const res = await axios.get("http://localhost:3000/chores");
+            const res = await axios.get(API_URLS.GET_CHORES);
             setChores(res.data);
         } catch(error) {
             console.error("Error: ", error);
@@ -17,7 +19,7 @@ export default function useChores() {
 
     const deleteChore = async (id: string) => {
         try {
-            await axios.delete(`http://localhost:3000/chore/${id}`);
+            await axios.delete(`${API_URLS.DELETE_CHORE}/${id}`);
             getChores();
         } catch(error) {
             console.error("Error: ", error);
@@ -26,10 +28,11 @@ export default function useChores() {
 
     const createChore = async (choreName: string) => {
         try {
-            await axios.post("http://localhost:3000/chore", {
+            await axios.post(API_URLS.CREATE_CHORE, {
                 name: choreName
             });
             getChores();
+            setChoreName("");
         } catch(error) { 
             console.error("Error: ", error);
         }
@@ -37,8 +40,9 @@ export default function useChores() {
 
     const updateChore = async (chore: Chore) => {
         try {
-            await axios.put("http://localhost:3000/chore", chore)
+            await axios.put(API_URLS.UPDATE_CHORE, chore)
             getChores();
+            setChoreName("");
         } catch(error) {
             console.error("Error: ", error);
         }
@@ -50,8 +54,12 @@ export default function useChores() {
 
     return {
         chores,
+        selected,
+        choreName,        
+        setSelected,
         createChore,
         deleteChore,
         updateChore,
+        setChoreName,
     }
 }
