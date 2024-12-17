@@ -1,5 +1,4 @@
-export const API_BASE_URL = "http://localhost:3000";
-
+export const API_BASE_URL = import.meta.env.VITE_API_DEV_URL;
 export const API_URLS = {
   GET_CHORES: `${API_BASE_URL}/chores`,
   CREATE_CHORE: `${API_BASE_URL}/chore`,

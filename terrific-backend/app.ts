@@ -10,7 +10,7 @@ const PORT = process.env.PORT;
 
 let index = require('./routes/index');
 app.use(cors({
-    origin: 'http://localhost:5173',
+    origin: process.env.CORS_URL,
     methods: ['GET', 'POST', 'PUT', 'DELETE'],
     allowedHeaders: ['Content-Type'],
 }));
