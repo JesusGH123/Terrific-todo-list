@@ -20,6 +20,7 @@ export interface ChoreInputProps {
 
 export interface ListProps {
     chores: Chore[],
+    selected: ChoreOrNull,
     deleteChore: (id: string) => void,
     updateChore: (chore: Chore) => void,
     setSelected: React.Dispatch<React.SetStateAction<ChoreOrNull>>,
