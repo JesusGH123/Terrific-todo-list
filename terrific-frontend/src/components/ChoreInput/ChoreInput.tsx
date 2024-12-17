@@ -1,4 +1,5 @@
 import { ChoreInputProps } from "../../interfaces/chores";
+import "./ChoreInput.css"
 
 export default function ChoreInput({ 
     choreName,
@@ -8,25 +9,26 @@ export default function ChoreInput({
     setChoreName,
     createChore
 }: ChoreInputProps) {
+    const save = () => {
+        if(choreName == "") return alert("Task needs a name");
+        if(selected)
+            updateChore({
+                ...selected,
+                name: choreName,
+            });
+        else
+            createChore(choreName);
+        setSelected(null);
+    }
 
     return(
-        <>
-            <span>{(selected ? "Update" : "Add")} todo</span>
+        <div className="chore-input-container">
+            <span>{(selected ? "Update" : "Add new")} todo</span>
             <input type="text" value={choreName} onChange={(event) => setChoreName(event.target.value)}/>
 
-            <button onClick={() => {
-                if(choreName == "") return alert("Task needs a name");
-                if(selected)
-                    updateChore({
-                        ...selected,
-                        name: choreName,
-                    });
-                else
-                    createChore(choreName);
-                setSelected(null);
-            }}>
+            <button className="save-btn" onClick={save}>
                 { (selected) ? "Update" : "Add" }
             </button>
-        </>
+        </div>
     )
 }

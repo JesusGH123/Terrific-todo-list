@@ -1,0 +1,31 @@
+services:
+  frontend: 
+    build: 
+      context: ./terrific-frontend
+    ports:
+      - "5173:80"
+    depends_on:
+      - backend
+    environment: 
+      url_backend: "http://backend:3000"
+
+  backend:
+    build:
+      context: ./terrific-backend
+    ports:
+      - "3000:3000"
+    depends_on:
+      - mongo
+    environment:
+      mongo_uri: "mongodb://mongo:27017/terrific"
+  
+  mongo:
+    image: mongo:6.0
+    container_name: mongo
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo-data:/data/db
+
+volumes:
+  mongo-data:

@@ -1,0 +1,44 @@
+td {
+    width: auto;
+}
+
+.task {
+    border: 5px solid black;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+.completed-task {
+    text-decoration: line-through;
+    color: black;
+
+    width: 80%;
+}
+
+.pending-task {
+    width: 80%;
+}
+
+.task-table {
+    width: 100%;
+}
+
+.delete-btn {
+    background-color: rgba(255, 0, 0, 0.5);
+}
+
+.edit-btn {
+    background-color: rgba(172, 255, 47, 0.5);
+}
+
+.delete-btn:hover {
+    background-color: rgba(255, 0, 0, 0.75);
+    transform: scale(1.1);
+    transition: 0.5s;
+}
+
+.edit-btn:hover {
+    background-color: rgba(172, 255, 47, 0.75);
+    transform: scale(1.1);
+    transition: 0.5s;
+}
