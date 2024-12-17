@@ -6,9 +6,8 @@ This is a demo application for a to do list.
 
 ## Table of Contents 
 
-1. [Project Description](#project-description)
-2. [Installation](#installation)
-3. [Usage](#usage)
+1. [Installation](#installation)
+2. [Usage](#usage)
 
 ---
 
