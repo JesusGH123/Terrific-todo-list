@@ -1,19 +1,23 @@
 import { Chore, ListProps } from "../../interfaces/chores";
+import "./List.css";
 
 export default function List({ 
     chores,
+    selected,
     deleteChore, 
     updateChore,
     setSelected,
     setChoreName,
 }: ListProps) {
     return (
-        <table>
+        <table className="task-table">
             {
-                chores.map((chore: Chore) => {
-                    return(
-                        <tr>
-                            <input
+                chores
+                    .filter((chore: Chore) => chore._id !== selected?._id)
+                    .map((chore: Chore) => (
+                        <tr className="task">
+                            <td>
+                                <input
                                 id={`choreCheckbox${chore?._id}`}
                                 type="checkbox"
                                 checked={chore?.done}
@@ -22,19 +26,25 @@ export default function List({
                                     "name": chore?.name,
                                     "done": !chore?.done
                                 })}
-                            />
-                            <td id={`choreName${chore?._id}`} >{chore?.name}</td>
+                                />
+                            </td>
+                            <td className={`${chore?.done ? "completed-task" : "pending-task"}`}>{chore?.name}</td>
 
-                            <button id={`btnDelete${chore?._id}`} onClick={() => deleteChore(chore?._id)}>Delete</button>
-                            <button 
-                                id={`btnEdit${chore?._id}`}
-                                onClick={() => {
-                                    setSelected(chore);
-                                    setChoreName(chore?.name);
-                                }}>Edit</button>
+                            <td>
+                                <button className={"delete-btn"} onClick={() => deleteChore(chore?._id)}>Delete</button>
+                            </td>
+                            <td>
+                                <button 
+                                    className={"edit-btn"}
+                                    onClick={() => {
+                                        setSelected(chore);
+                                        setChoreName(chore?.name);
+                                    }}>Edit
+                                </button>
+                            </td>
                         </tr>
                     )
-                })
+                )
             }
         </table>
     )

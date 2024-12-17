@@ -16,25 +16,28 @@ function App() {
   } = useChores()
   
   return (
-    <>
-      <h1>Terrific To-do list</h1>
+    <div className="container">
+      <h1 className="title">Terrific To-do list</h1>
 
-      <ChoreInput
-        selected={selected} 
-        choreName={choreName}
-        setSelected={setSelected}
-        createChore={createChore}
-        updateChore={updateChore}
-        setChoreName={setChoreName}
-      />
-      <List 
-        chores={chores}
-        deleteChore={deleteChore}
-        updateChore={updateChore}
-        setSelected={setSelected}
-        setChoreName={setChoreName}
-      />
-    </>
+      <section>
+        <ChoreInput
+          selected={selected} 
+          choreName={choreName}
+          setSelected={setSelected}
+          createChore={createChore}
+          updateChore={updateChore}
+          setChoreName={setChoreName}
+        />
+        <List 
+          chores={chores}
+          selected={selected}
+          deleteChore={deleteChore}
+          updateChore={updateChore}
+          setSelected={setSelected}
+          setChoreName={setChoreName}
+        />
+      </section>
+    </div>
   )
 }
 
